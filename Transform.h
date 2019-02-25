@@ -25,6 +25,9 @@ public:
 	Vector2 GetSize();
 	void SetSize(Vector2 newSize);
 
+	/// Color
+	Color* GetColor();
+	void SetColor(int r, int g, int b, int a);
 
 	// render the transform to SDL Renderer
 	virtual void Render(SDL_Renderer* renderer);

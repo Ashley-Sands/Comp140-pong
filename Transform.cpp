@@ -57,6 +57,19 @@ void Transform::SetSize(Vector2 size)
 	positionRect.w = size.x;
 	positionRect.h = size.y;
 }
+
+Color* Transform::GetColor()
+{
+	return color;
+}
+
+void Transform::SetColor(int r, int g, int b, int a)
+{
+	color->red = r;
+	color->green = g;
+	color->blue = b;
+	color->alpha = a;
+}
 void Transform::Render(SDL_Renderer* renderer)
 {
 
