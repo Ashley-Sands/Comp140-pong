@@ -22,6 +22,9 @@ Game::~Game()
 
 bool Game::initSerialConnection()
 {
+
+	serial = new SerialInterface();
+
 	return true;
 }
 /*
@@ -69,11 +72,19 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, i
 	cout << "SDL init success \n";
 
 	initSerialConnection();
+	cout << "SDL init success \n";
 
-	playerPosition.x = 100;
-	playerPosition.y = 100;
-	playerPosition.w = 25;
-	playerPosition.h = 25;
+	//Set the player one and two start position.
+	playerOnePosition.x = 50;
+	playerOnePosition.y = 100;
+	playerOnePosition.w = 25;
+	playerOnePosition.h = 75;
+
+	playerTwoPosition.x = 540;
+	playerTwoPosition.y = 540;
+	playerTwoPosition.w = 25;
+	playerTwoPosition.h = 75;
+
 	return true;
 }
 
@@ -87,7 +98,8 @@ void Game::render()
 
 	// draw to the screen here!
 	SDL_SetRenderDrawColor(mainRenderer, 255, 255, 255, 255);
-	SDL_RenderFillRect(mainRenderer,&playerPosition);
+	SDL_RenderFillRect(mainRenderer,&playerOnePosition);
+	SDL_RenderFillRect(mainRenderer,&playerTwoPosition);
 	
 	// render new frame
 	SDL_RenderPresent(mainRenderer);
@@ -101,12 +113,19 @@ void Game::update()
 {
 	
 }
-
 /*
-* handleEvents - Poll Events and uses switch case to process specific events
-*
+* handleEvents - Controler Events for the controler.
 */
-void Game::handleEvents()
+void Game::HandleControlerEvents()
+{
+	if(!serial->connect)
+	serial->getPositions();
+	playerOnePosition.y = (serial->getPot1() / 1023.0f) * 405;
+	playerTwoPosition.y = (serial->getPot2() / 1023.0f) * 405;
+
+}
+
+void Game::HandleKeyboardEvents()
 {
 	SDL_Event event;
 
@@ -118,14 +137,30 @@ void Game::handleEvents()
 		case SDL_MOUSEBUTTONDOWN:
 			break;
 		case SDL_KEYDOWN:
+			//Player onw inputs.
 			if (event.key.keysym.sym == SDLK_w)
 			{
-				playerPosition.y -= 5.0f;
+				playerOnePosition.y -= 5.0f;
 			}
 			else if (event.key.keysym.sym == SDLK_s)
 			{
-				playerPosition.y += 5.0f;
+				playerOnePosition.y += 5.0f;
 			}
+			
+			//Player two inputs.
+			if (event.key.keysym.sym == SDLK_UP)
+			{
+				playerTwoPosition.y -= 5.0f;
+			}
+			else if (event.key.keysym.sym == SDLK_DOWN)
+			{
+				playerTwoPosition.y += 5.0f;
+			}
+
+			//Spwan Ball if on is not present.
+			//if(event.key.keysym.sym == SDLK_SPACE)
+				//Do ball things!!
+
 			break;
 		default:
 			break;
@@ -135,8 +170,33 @@ void Game::handleEvents()
 }
 
 /*
+* handleEvents - Poll Events and uses switch case to process specific events
+*/
+void Game::handleEvents()
+{
+	// use controler inputs if avable.
+	if (serial->connect)
+		HandleControlerEvents();
+	else
+		HandleKeyboardEvents();
+
+	// Clamp the paddle position.
+	playerOnePosition.y = ClampPaddlePosition(playerOnePosition.y);
+	playerTwoPosition.y = ClampPaddlePosition(playerTwoPosition.y);
+
+}
+/*
+* 
+*/
+float Game::ClampPaddlePosition(float yPosition)
+{
+	if (yPosition < 0) yPosition = 0;
+	else if (yPosition > 405) yPosition = 405;
+
+	return yPosition;
+}
+/*
 * clean - Clean up SDL and close the port
-*
 */
 void Game::clean()
 {	

@@ -1,6 +1,7 @@
 #pragma once
 #include "SDL.h"
 #include <serial\serial.h>
+#include "SerialInterface.h"
 
 class Game
 {
@@ -11,6 +12,8 @@ public:
 	bool init(const char* title, int xpos, int ypos, int width, int height, int flags);
 	void render();
 	void update();
+	void HandleControlerEvents();
+	void HandleKeyboardEvents();
 	void handleEvents();
 	void clean();
 
@@ -22,6 +25,12 @@ private:
 	SDL_Renderer* mainRenderer;
 	bool isRunning;
 
-	SDL_Rect playerPosition;
+	SDL_Rect playerOnePosition;
+	SDL_Rect playerTwoPosition;
+
+	SerialInterface* serial;
+
+	float ClampPaddlePosition(float yPosition);
+
 };
 
