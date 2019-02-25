@@ -3,6 +3,7 @@
 #include <serial\serial.h>
 #include "SerialInterface.h"
 #include "Transform.h"
+#include "ball.h"
 
 class Game
 {
@@ -33,6 +34,7 @@ private:
 
 	Transform* playerOnePaddle;
 	Transform* playerTwoPaddle;
+	ball* pongBall;
 
 	SerialInterface* serial;
 

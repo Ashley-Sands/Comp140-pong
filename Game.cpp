@@ -12,6 +12,7 @@ Game::Game()
 {
 	playerOnePaddle = new Transform();
 	playerTwoPaddle = new Transform();
+	pongBall = new ball();
 }
 
 /*
@@ -84,6 +85,10 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, i
 	playerTwoPaddle->SetRect(Vector2(540, 100), Vector2(25, 75));
 	playerTwoPaddle->SetColor(255, 255, 255, 255);
 
+	pongBall->SetRect( Vector2(250, 150), Vector2(20, 20) );
+	pongBall->SetColor(255, 255, 0, 255);
+
+
 	return true;
 }
 
@@ -98,6 +103,7 @@ void Game::render()
 	// draw player one and two to screen
 	playerOnePaddle->Render(mainRenderer);
 	playerTwoPaddle->Render(mainRenderer);
+	pongBall->Render(mainRenderer);
 
 	// render new frame
 	SDL_RenderPresent(mainRenderer);
@@ -109,7 +115,7 @@ void Game::render()
 */
 void Game::update()
 {
-	
+	pongBall->Update();
 }
 /*
 * handleEvents - Controler Events for the controler.
