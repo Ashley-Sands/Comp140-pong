@@ -21,6 +21,8 @@ public:
 
 	Vector2 GetPosition();
 	void SetPosition(Vector2 newPosition);
+	void SetPositionX( float x_pos );
+	void SetPositionY( float y_pos );
 
 	Vector2 GetSize();
 	void SetSize(Vector2 newSize);
