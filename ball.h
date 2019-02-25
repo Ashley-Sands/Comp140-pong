@@ -1,20 +1,23 @@
 #pragma once
-class ball
+
+#include "Transform.h"
+#include "Vector2.h"
+
+class ball : public Transform
 {
 public:
 	ball();
+	ball(Vector2 position, Vector2 size);
+
 	~ball();
 
+	void Update();
+
 private:
-	int x = 1, y = 1;
-	int xPosition = 0;
-	int yPosition = 0;
+	
+	Vector2* moveDirection;
 
 	int speed = 5;
-
-	bool movePositive = true;
-
-	
 
 };
 
