@@ -5,6 +5,7 @@ public:
 	ball();
 	~ball();
 
+private:
 	int x = 1, y = 1;
 	int xPosition = 0;
 	int yPosition = 0;
