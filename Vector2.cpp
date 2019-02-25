@@ -17,3 +17,14 @@ Vector2::Vector2(float axis_x, float axis_y)
 Vector2::~Vector2()
 {
 }
+
+Vector2 Vector2::operator + (Vector2 rhs)
+{
+	return Vector2(x + rhs.x, y + rhs.y);
+
+}
+
+Vector2 Vector2::operator - (Vector2 rhs)
+{
+	return Vector2(x - rhs.x, y - rhs.y);
+}

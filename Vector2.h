@@ -8,6 +8,9 @@ public:
 	
 	~Vector2();
 
+	Vector2 operator + (Vector2 rhs);
+	Vector2 operator - (Vector2 rhs);
+
 	// define axis
 	float x;
 	float y;
