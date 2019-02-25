@@ -118,7 +118,7 @@ void Game::update()
 */
 void Game::HandleControlerEvents()
 {
-	if(!serial->connect)
+
 	serial->getPositions();
 	playerOnePosition.y = (serial->getPot1() / 1023.0f) * 405;
 	playerTwoPosition.y = (serial->getPot2() / 1023.0f) * 405;
@@ -175,7 +175,7 @@ void Game::HandleKeyboardEvents()
 void Game::handleEvents()
 {
 	// use controler inputs if avable.
-	if (serial->connect)
+	if (serial->connect && !ignoreSerial)
 		HandleControlerEvents();
 	else
 		HandleKeyboardEvents();

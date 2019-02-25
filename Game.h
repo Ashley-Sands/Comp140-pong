@@ -32,5 +32,7 @@ private:
 
 	float ClampPaddlePosition(float yPosition);
 
+	bool ignoreSerial = true;
+
 };
 
