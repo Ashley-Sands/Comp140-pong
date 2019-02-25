@@ -19,6 +19,9 @@ public:
 	Vector2 GetPosition();
 	Vector2 GetSize();
 
+	// render the transform to SDL Renderer
+	virtual void Render(SDL_Renderer* renderer);
+
 private:
 
 	SDL_Rect positionRect;

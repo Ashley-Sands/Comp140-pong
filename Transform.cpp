@@ -37,4 +37,11 @@ Vector2 Transform::GetSize()
 {
 	return Vector2(positionRect.w, positionRect.h);
 }
+void Transform::Render(SDL_Renderer* renderer)
+{
+
+	// Render Rect to renderer.
+	SDL_SetRenderDrawColor(renderer, color->red, color->green, color->blue, color->alpha);
+	SDL_RenderFillRect(renderer, &positionRect);
+
 }
