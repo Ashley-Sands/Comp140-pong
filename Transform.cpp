@@ -27,12 +27,13 @@ SDL_Rect Transform::GetRect()
 	return positionRect;
 }
 
-Vector2* Transform::GetPosition()
+Vector2 Transform::GetPosition()
 {
-	return new Vector2(positionRect.x, positionRect.y);
+	return Vector2(positionRect.x, positionRect.y);
 }
 
-Vector2* Transform::GetSize()
+Vector2 Transform::GetSize()
 {
-	return new Vector2(positionRect.w, positionRect.h);
+	return Vector2(positionRect.w, positionRect.h);
+}
 }

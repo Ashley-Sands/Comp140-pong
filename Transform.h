@@ -14,8 +14,8 @@ public:
 	~Transform();
 
 	SDL_Rect GetRect();
-	Vector2* GetPosition();
-	Vector2* GetSize();
+	Vector2 GetPosition();
+	Vector2 GetSize();
 
 private:
 
