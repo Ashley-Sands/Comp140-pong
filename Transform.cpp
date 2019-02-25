@@ -20,7 +20,9 @@ Transform::Transform(Vector2 pos, Vector2 size)
 }
 
 Transform::~Transform()
-{}
+{
+	delete color;
+}
 
 SDL_Rect Transform::GetRect()
 {

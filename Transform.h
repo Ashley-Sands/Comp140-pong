@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Vector2.h"
+#include "color.h"
 
 class SDL_Rect;
 
@@ -20,6 +21,6 @@ public:
 private:
 
 	SDL_Rect positionRect;
-
+	Color* color;
 };
 
