@@ -157,7 +157,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ball.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Paddle.h" />
+    <ClInclude Include="RenderObject.h" />
     <ClInclude Include="SerialInterface.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -167,7 +170,10 @@
   <ItemGroup>
     <ClCompile Include="20180208SerialSDL.cpp" />
     <ClCompile Include="ball.cpp" />
+    <ClCompile Include="Color.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Paddle.cpp" />
+    <ClCompile Include="RenderObject.cpp" />
     <ClCompile Include="SerialInterface.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
