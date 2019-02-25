@@ -15,9 +15,16 @@ public:
 
 	~Transform();
 
+	///Position and scale
 	SDL_Rect GetRect();
+	void SetRect(Vector2 position, Vector2 size);
+
 	Vector2 GetPosition();
+	void SetPosition(Vector2 newPosition);
+
 	Vector2 GetSize();
+	void SetSize(Vector2 newSize);
+
 
 	// render the transform to SDL Renderer
 	virtual void Render(SDL_Renderer* renderer);
