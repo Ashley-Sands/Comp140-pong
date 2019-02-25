@@ -17,7 +17,7 @@ private:
 	
 	Vector2* moveDirection;
 
-	int speed = 5;
+	int speed = 1;
 
 };
 
