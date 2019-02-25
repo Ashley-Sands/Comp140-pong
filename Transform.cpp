@@ -11,12 +11,12 @@ Transform::Transform()
 	positionRect.h = 0;
 }
 
-Transform::Transform(Vector2* pos, Vector2* size)
+Transform::Transform(Vector2 pos, Vector2 size)
 {
-	positionRect.x = &pos->x;
-	positionRect.y = &pos->y;
-	positionRect.w = &size->x;
-	positionRect.h = &size->y;
+	positionRect.x = pos.x;
+	positionRect.y = pos.y;
+	positionRect.w = size.x;
+	positionRect.h = size.y;
 }
 
 Transform::~Transform()
