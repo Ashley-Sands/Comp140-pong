@@ -2,6 +2,8 @@
 
 #include "Vector2.h"
 
+class SDL_Rect;
+
 class Transform
 {
 public:
@@ -11,8 +13,13 @@ public:
 
 	~Transform();
 
-	Vector2* position;
-	Vector2* scale;
+	SDL_Rect GetRect();
+	Vector2* GetPosition();
+	Vector2* GetSize();
+
+private:
+
+	SDL_Rect positionRect;
 
 };
 
