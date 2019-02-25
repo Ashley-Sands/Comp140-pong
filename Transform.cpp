@@ -1,5 +1,4 @@
 #include "Transform.h"
-#include "libraries/SDL2-2.0.7/include/SDL.h"
 
 
 Transform::Transform()

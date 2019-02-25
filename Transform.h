@@ -2,6 +2,7 @@
 
 #include "Vector2.h"
 #include "color.h"
+#include "libraries/SDL2-2.0.7/include/SDL.h"
 
 class SDL_Rect;
 
