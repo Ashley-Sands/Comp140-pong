@@ -24,6 +24,9 @@ public:
 	void SetPositionX( float x_pos );
 	void SetPositionY( float y_pos );
 
+	void MoveTransform( float move_x, float move_y );
+	void MoveTransform(Vector2 moveAmount);
+
 	Vector2 GetSize();
 	void SetSize(Vector2 newSize);
 

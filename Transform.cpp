@@ -56,6 +56,17 @@ void Transform::SetPositionY(float y_pos)
 {
 	positionRect.y = y_pos;
 }
+
+void Transform::MoveTransform(float move_x, float move_y)
+{
+	MoveTransform( Vector2(move_x, move_y) );
+}
+
+void Transform::MoveTransform(Vector2 moveAmount)
+{
+	SetPosition( GetPosition() + moveAmount );
+}
+
 Vector2 Transform::GetSize()
 {
 	return Vector2(positionRect.w, positionRect.h);
