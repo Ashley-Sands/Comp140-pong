@@ -10,6 +10,8 @@ public:
 
 	Vector2 operator + (Vector2 rhs);
 	Vector2 operator - (Vector2 rhs);
+	Vector2 operator * (Vector2 rhs);
+	Vector2 operator * (float rhs);
 
 	// define axis
 	float x;
