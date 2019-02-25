@@ -10,7 +10,8 @@ using std::cout;
 */
 Game::Game()
 {
-	
+	playerOnePaddle = new Transform();
+	playerTwoPaddle = new Transform();
 }
 
 /*
@@ -18,6 +19,8 @@ Game::Game()
 */
 Game::~Game()
 {
+	delete playerOnePaddle;
+	delete playerTwoPaddle;
 }
 
 bool Game::initSerialConnection()
@@ -74,16 +77,12 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, i
 	initSerialConnection();
 	cout << "SDL init success \n";
 
-	//Set the player one and two start position.
-	playerOnePosition.x = 50;
-	playerOnePosition.y = 100;
-	playerOnePosition.w = 25;
-	playerOnePosition.h = 75;
+	//Set the player one and two start.
+	playerOnePaddle->SetRect(Vector2(50, 100), Vector2(25, 75));
+	playerOnePaddle->SetColor(255, 255, 255, 255);
 
-	playerTwoPosition.x = 540;
-	playerTwoPosition.y = 540;
-	playerTwoPosition.w = 25;
-	playerTwoPosition.h = 75;
+	playerTwoPaddle->SetRect(Vector2(540, 100), Vector2(25, 75));
+	playerTwoPaddle->SetColor(255, 255, 255, 255);
 
 	return true;
 }
@@ -96,11 +95,10 @@ void Game::render()
 	// clear previous frame
 	SDL_RenderClear(mainRenderer);
 
-	// draw to the screen here!
-	SDL_SetRenderDrawColor(mainRenderer, 255, 255, 255, 255);
-	SDL_RenderFillRect(mainRenderer,&playerOnePosition);
-	SDL_RenderFillRect(mainRenderer,&playerTwoPosition);
-	
+	// draw player one and two to screen
+	playerOnePaddle->Render(mainRenderer);
+	playerTwoPaddle->Render(mainRenderer);
+
 	// render new frame
 	SDL_RenderPresent(mainRenderer);
 }
@@ -120,8 +118,13 @@ void Game::HandleControlerEvents()
 {
 
 	serial->getPositions();
-	playerOnePosition.y = (serial->getPot1() / 1023.0f) * 405;
-	playerTwoPosition.y = (serial->getPot2() / 1023.0f) * 405;
+
+	// Get and set player one and two positions
+	float playerOnePos = (serial->getPot1() / 1023.0f) * 405.0f;
+	float playerTwoPos = (serial->getPot1() / 1023.0f) * 405.0f;
+
+	playerOnePaddle->SetPosition( Vector2(0, playerOnePos ) );
+	playerOnePaddle->SetPosition( Vector2(0, playerTwoPos ) );
 
 }
 
@@ -139,23 +142,16 @@ void Game::HandleKeyboardEvents()
 		case SDL_KEYDOWN:
 			//Player onw inputs.
 			if (event.key.keysym.sym == SDLK_w)
-			{
-				playerOnePosition.y -= 5.0f;
-			}
+				playerOnePaddle->MoveTransform( 0, -paddleMoveSpeed );
 			else if (event.key.keysym.sym == SDLK_s)
-			{
-				playerOnePosition.y += 5.0f;
-			}
+				playerOnePaddle->MoveTransform( 0, paddleMoveSpeed );
 			
 			//Player two inputs.
 			if (event.key.keysym.sym == SDLK_UP)
-			{
-				playerTwoPosition.y -= 5.0f;
-			}
+				playerTwoPaddle->MoveTransform(0, -paddleMoveSpeed);
 			else if (event.key.keysym.sym == SDLK_DOWN)
-			{
-				playerTwoPosition.y += 5.0f;
-			}
+				playerTwoPaddle->MoveTransform(0, paddleMoveSpeed);
+
 
 			//Spwan Ball if on is not present.
 			//if(event.key.keysym.sym == SDLK_SPACE)
@@ -181,14 +177,18 @@ void Game::handleEvents()
 		HandleKeyboardEvents();
 
 	// Clamp the paddle position.
-	playerOnePosition.y = ClampPaddlePosition(playerOnePosition.y);
-	playerTwoPosition.y = ClampPaddlePosition(playerTwoPosition.y);
+	float p1_clampedY = ClampPaddlePosition(playerOnePaddle->GetPosition().y, 0, 405);
+	float p2_clampedY = ClampPaddlePosition(playerTwoPaddle->GetPosition().y, 0, 405);
+
+	playerOnePaddle->SetPositionY(p1_clampedY);
+	playerTwoPaddle->SetPositionY(p2_clampedY);
 
 }
+
 /*
 * 
 */
-float Game::ClampPaddlePosition(float yPosition)
+float Game::ClampPaddlePosition(float yPosition, float min, float max)
 {
 	if (yPosition < 0) yPosition = 0;
 	else if (yPosition > 405) yPosition = 405;

@@ -2,6 +2,7 @@
 #include "SDL.h"
 #include <serial\serial.h>
 #include "SerialInterface.h"
+#include "Transform.h"
 
 class Game
 {
@@ -25,12 +26,17 @@ private:
 	SDL_Renderer* mainRenderer;
 	bool isRunning;
 
-	SDL_Rect playerOnePosition;
-	SDL_Rect playerTwoPosition;
+	//SDL_Rect playerOnePosition;
+	//SDL_Rect playerTwoPosition;
+
+	float paddleMoveSpeed = 5.0f;
+
+	Transform* playerOnePaddle;
+	Transform* playerTwoPaddle;
 
 	SerialInterface* serial;
 
-	float ClampPaddlePosition(float yPosition);
+	float ClampPaddlePosition(float yPosition, float min, float max);
 
 	bool ignoreSerial = true;
 
