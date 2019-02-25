@@ -34,6 +34,10 @@ public:
 	Color* GetColor();
 	void SetColor(int r, int g, int b, int a);
 
+	// check if other object has collider with this object
+	// @Param otherObject:		SDL_Rect of other object
+	virtual bool HasCollision(Transform* otherObject);
+
 	// render the transform to SDL Renderer
 	virtual void Render(SDL_Renderer* renderer);
 

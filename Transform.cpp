@@ -90,6 +90,13 @@ void Transform::SetColor(int r, int g, int b, int a)
 	color->blue = b;
 	color->alpha = a;
 }
+
+bool Transform::HasCollision(Transform* otherObject)
+{
+	//TODO: applie collidion logic.
+	return false;
+}
+
 void Transform::Render(SDL_Renderer* renderer)
 {
 
