@@ -10,9 +10,9 @@ using std::cout;
 */
 Game::Game()
 {
-	playerOnePaddle = new Transform();
-	playerTwoPaddle = new Transform();
-	pongBall = new ball();
+	playerOnePaddle = new Transform("p_one");
+	playerTwoPaddle = new Transform("p_two");
+	pongBall = new ball("ball");
 }
 
 /*

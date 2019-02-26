@@ -11,13 +11,26 @@ Transform::Transform()
 	color = new Color();
 }
 
-Transform::Transform(Vector2 pos, Vector2 size)
+Transform::Transform(std::string name)
+{
+	objName = name;
+	positionRect.x = 0;
+	positionRect.y = 0;
+	positionRect.w = 0;
+	positionRect.h = 0;
+	color = new Color();
+}
+
+Transform::Transform(Vector2 pos, Vector2 size, std::string name)
 {
 	positionRect.x = pos.x;
 	positionRect.y = pos.y;
 	positionRect.w = size.x;
 	positionRect.h = size.y;
 	color = new Color();
+
+	objName = name;
+
 }
 
 Transform::~Transform()

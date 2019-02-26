@@ -7,7 +7,8 @@ class ball : public Transform
 {
 public:
 	ball();
-	ball(Vector2 position, Vector2 size);
+	ball(std::string name);
+	ball(Vector2 position, Vector2 size, std::string name);
 
 	~ball();
 

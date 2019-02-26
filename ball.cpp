@@ -5,12 +5,17 @@
 
 ball::ball() : Transform::Transform()
 {
-	moveDirection = new Vector2(1.0f / 60.0f, 0);
+	moveDirection = new Vector2(1.0f, 0);
 }
 
-ball::ball(Vector2 pos, Vector2 size) : Transform::Transform(pos, size)
+ball::ball(std::string name) : Transform::Transform(name)
 {
-	moveDirection = new Vector2(1.0f / 60.0f, 0);
+	moveDirection = new Vector2(1.0f, 0);
+}
+
+ball::ball(Vector2 pos, Vector2 size, std::string name) : Transform::Transform(pos, size, name)
+{
+	moveDirection = new Vector2(1.0f, 0);
 }
 
 ball::~ball()

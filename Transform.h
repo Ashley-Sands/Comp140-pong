@@ -2,6 +2,7 @@
 
 #include "Vector2.h"
 #include "color.h"
+#include <string>
 #include "libraries/SDL2-2.0.7/include/SDL.h"
 
 class SDL_Rect;
@@ -12,9 +13,12 @@ class Transform
 public:
 
 	Transform();
-	Transform(Vector2 pos, Vector2 scale);
+	Transform(std::string na);
+	Transform(Vector2 pos, Vector2 scale, std::string name);
 
 	~Transform();
+
+	std::string objName;
 
 	///Position and scale
 	SDL_Rect GetRect();
