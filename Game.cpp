@@ -116,6 +116,8 @@ void Game::render()
 void Game::update()
 {
 	pongBall->Update();
+	pongBall->HasCollision(playerOnePaddle);
+	pongBall->HasCollision(playerTwoPaddle);
 }
 /*
 * handleEvents - Controler Events for the controler.
