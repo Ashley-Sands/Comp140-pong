@@ -10,6 +10,9 @@ using std::cout;
 */
 Game::Game()
 {
+	topBounds = new Transform("top_bounds");
+	bottomBounds = new Transform("bottom_bounds");
+
 	playerOnePaddle = new Transform("p_one");
 	playerTwoPaddle = new Transform("p_two");
 	pongBall = new ball("ball");
@@ -78,6 +81,13 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, i
 	initSerialConnection();
 	cout << "SDL init success \n";
 
+	// sound top and bottom bounds
+	topBounds->SetRect(Vector2(0, 0), Vector2(width, 10));
+	topBounds->SetColor(100, 100, 100, 255);
+
+	bottomBounds->SetRect(Vector2(0, height-10), Vector2(width, 10));
+	bottomBounds->SetColor(100, 100, 100, 255);
+
 	//Set the player one and two start.
 	playerOnePaddle->SetRect(Vector2(50, 100), Vector2(25, 75));
 	playerOnePaddle->SetColor(255, 255, 255, 255);
@@ -100,6 +110,10 @@ void Game::render()
 	// clear previous frame
 	SDL_RenderClear(mainRenderer);
 
+	// draw bounds
+	topBounds->Render(mainRenderer);
+	bottomBounds->Render(mainRenderer);
+
 	// draw player one and two to screen
 	playerOnePaddle->Render(mainRenderer);
 	playerTwoPaddle->Render(mainRenderer);
@@ -116,8 +130,15 @@ void Game::render()
 void Game::update(int deltaTime)
 {
 	pongBall->Update(deltaTime);
+	
+	// top / bottom collision
+	pongBall->OnCollision(topBounds);
+	pongBall->OnCollision(bottomBounds);
+
+	// paddle collision
 	pongBall->OnCollision(playerOnePaddle);
 	pongBall->OnCollision(playerTwoPaddle);
+	
 }
 /*
 * handleEvents - Controler Events for the controler.

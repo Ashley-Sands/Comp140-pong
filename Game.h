@@ -34,6 +34,9 @@ private:
 
 	float paddleMoveSpeed = 5.0f;
 
+	Transform* topBounds;
+	Transform* bottomBounds;
+
 	Transform* playerOnePaddle;
 	Transform* playerTwoPaddle;
 	ball* pongBall;
