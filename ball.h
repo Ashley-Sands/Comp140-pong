@@ -11,7 +11,7 @@ public:
 
 	~ball();
 
-	void Update();
+	void Update(int deltaTime);
 
 	virtual bool OnCollision(Transform* otherObject) override;
 

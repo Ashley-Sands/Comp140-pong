@@ -115,7 +115,7 @@ void Game::render()
 */
 void Game::update(int deltaTime)
 {
-	pongBall->Update();
+	pongBall->Update(deltaTime);
 	pongBall->OnCollision(playerOnePaddle);
 	pongBall->OnCollision(playerTwoPaddle);
 }

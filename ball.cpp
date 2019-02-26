@@ -18,10 +18,10 @@ ball::~ball()
 	delete moveDirection;
 }
 
-void ball::Update()
+void ball::Update(int deltaTime)
 {
 
-	MoveTransform( (*moveDirection * speed) );
+	MoveTransform((*moveDirection * speed)) * (deltaTime/1000.0f) );
 
 }
 
