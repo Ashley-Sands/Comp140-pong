@@ -113,7 +113,7 @@ void Game::render()
 * update - Process all variables !in charge of anything to do with rendering
 *
 */
-void Game::update()
+void Game::update(int deltaTime)
 {
 	pongBall->Update();
 	pongBall->HasCollision(playerOnePaddle);

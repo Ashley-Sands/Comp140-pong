@@ -13,7 +13,9 @@ public:
 
 	bool init(const char* title, int xpos, int ypos, int width, int height, int flags);
 	void render();
-	void update();
+	// Main game update
+	// @Param int deltaTime:	Amount of ticks since the last up date.
+	void update(int deltaTime);
 	void HandleControlerEvents();
 	void HandleKeyboardEvents();
 	void handleEvents();
