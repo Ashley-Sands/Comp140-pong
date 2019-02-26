@@ -5,6 +5,7 @@
 #include "libraries/SDL2-2.0.7/include/SDL.h"
 
 class SDL_Rect;
+class SDL_Renderer;
 
 class Transform
 {
@@ -44,6 +45,8 @@ public:
 private:
 
 	SDL_Rect positionRect;
+	Vector2 position;			//set the position into a vector so we dont lose any position
+
 	Color* color;
 };
 

@@ -38,23 +38,23 @@ void Transform::SetRect(Vector2 position, Vector2 size)
 
 Vector2 Transform::GetPosition()
 {
-	return Vector2(positionRect.x, positionRect.y);
+	return position;// Vector2(positionRect.x, positionRect.y);
 }
 
-void Transform::SetPosition(Vector2 position)
+void Transform::SetPosition(Vector2 pos)
 {
-	positionRect.x = position.x;
-	positionRect.y = position.y;
+	position.x = pos.x;
+	position.y = pos.y;
 }
 
 void Transform::SetPositionX(float x_pos)
 {
-	positionRect.x = x_pos;
+	position.x = x_pos;
 }
 
 void Transform::SetPositionY(float y_pos)
 {
-	positionRect.y = y_pos;
+	position.y = y_pos;
 }
 
 void Transform::MoveTransform(float move_x, float move_y)
@@ -99,6 +99,10 @@ bool Transform::HasCollision(Transform* otherObject)
 
 void Transform::Render(SDL_Renderer* renderer)
 {
+
+	//update the rects x/y position
+	positionRect.x = position.x;
+	positionRect.y = position.y;
 
 	// Render Rect to renderer.
 	SDL_SetRenderDrawColor(renderer, color->red, color->green, color->blue, color->alpha);
