@@ -34,46 +34,40 @@ bool ball::OnCollision(Transform * otherObject)
 {
 
 	// find what edge we have collion on if any
-	Vector2* other_topLeft = &otherObject->GetPosition();
-	Vector2  other_bottomRight = *other_topLeft + otherObject->GetSize();
+	Vector2 other_topLeft = otherObject->GetPosition();
+	Vector2 other_bottomRight = other_topLeft + otherObject->GetSize();
 	
-	Vector2* this_topLeft = &GetPosition();
-	Vector2  this_bottomRight = *this_topLeft + GetSize();
+	Vector2 this_topLeft = GetPosition();
+	Vector2 this_bottomRight = this_topLeft + GetSize();
 
-	bool inXRange = this_topLeft->x < other_bottomRight.x && this_bottomRight.x > other_topLeft->x;
-	bool inYRange = this_topLeft->y < other_bottomRight.y && this_bottomRight.y > other_topLeft->y;
+	// if the dif is < 0 its able to collide in that direction
+	int coll_top, coll_right, coll_bot, coll_left;
+
+	coll_top = this_topLeft.y - other_bottomRight.y;
+	coll_right = other_topLeft.x - this_bottomRight.x;
+
+	coll_bot = other_topLeft.y - this_bottomRight.y;
+
+	coll_left = this_topLeft.x - other_bottomRight.x;
 
 	bool collision = false;
 
-	if (this_topLeft->y < other_bottomRight.y && (other_bottomRight.y - this_topLeft->y) <= GetSize().y)	// top collision
-	{
-		moveDirection->y = -moveDirection->y;
-		collision = true;
-	}
-	else if (this_bottomRight.y > other_topLeft->y && (this_bottomRight.y - other_topLeft->y) <= GetSize().y) // bottom collision
-	{
-		moveDirection->y = -moveDirection->y;
-		collision = true;
-	}
+	std::cout << "Collision left: " << coll_left << " ## " << otherObject->objName << "\n";
+	std::cout << "Collision right: " << coll_right << " ## " << otherObject->objName << "\n";
 
-	if (this_topLeft->x < other_bottomRight.x && (other_bottomRight.x - this_topLeft->x) <= GetSize().x  && inYRange)							// left collision
+	// top/bottom collision
+	if ((coll_top < 0 && coll_bot < 0) && (coll_left < 0 && coll_right < 0))
 	{
-		std::cout << "Collision\n";
-		moveDirection->x = 1.0f / 60.0f;			// TODO: use some sorta delta time fo all 1/60's
-		moveDirection->y = -0.25f * (1.0f/60.0f);	// TODO: work out the angle from the center of the collision
-		collision = true;
-	}
-	else if (this_bottomRight.x > other_topLeft->x && (this_bottomRight.x - other_topLeft->x) <= GetSize().x && inYRange) // right collision
-	{
-		std::cout << "Collision\n";
-
-		moveDirection->x = -1 / 60.0f;
-		moveDirection->y = 0.25f * (1.0f / 60.0f);	// TODO: work out the angle from the center of the collision
-
 		collision = true;
 	}
 
-
+	// left/right collision
+	if ((coll_left < 0 && coll_right < 0) && (coll_top < 0 && coll_bot < 0))
+	{
+		moveDirection->x = -moveDirection->x;
+		moveDirection->y = 0.25f;	// TODO: work out the angle from the center of the collision
+		collision = true;
+	}
 
 	return collision;
 }
