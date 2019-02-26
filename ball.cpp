@@ -35,15 +35,19 @@ bool ball::OnCollision(Transform * otherObject)
 	Vector2* this_topLeft = &GetPosition();
 	Vector2  this_bottomRight = *this_topLeft + GetSize();
 
+	bool inXRange = this_topLeft->x < other_bottomRight.x && this_bottomRight.x > other_topLeft->x;
 	bool inYRange = this_topLeft->y < other_bottomRight.y && this_bottomRight.y > other_topLeft->y;
+
 	bool collision = false;
 
 	if (this_topLeft->y < other_bottomRight.y && (other_bottomRight.y - this_topLeft->y) <= GetSize().y)	// top collision
 	{
+		moveDirection->y = -moveDirection->y;
 		collision = true;
 	}
 	else if (this_bottomRight.y > other_topLeft->y && (this_bottomRight.y - other_topLeft->y) <= GetSize().y) // bottom collision
 	{
+		moveDirection->y = -moveDirection->y;
 		collision = true;
 	}
 
