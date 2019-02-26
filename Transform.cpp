@@ -91,7 +91,7 @@ void Transform::SetColor(int r, int g, int b, int a)
 	color->alpha = a;
 }
 
-bool Transform::HasCollision(Transform* otherObject)
+bool Transform::OnCollision(Transform* otherObject)
 {
 	//TODO: applie collidion logic.
 	return false;

@@ -13,7 +13,7 @@ public:
 
 	void Update();
 
-	virtual bool HasCollision(Transform* otherObject) override;
+	virtual bool OnCollision(Transform* otherObject) override;
 
 private:
 	

@@ -116,8 +116,8 @@ void Game::render()
 void Game::update(int deltaTime)
 {
 	pongBall->Update();
-	pongBall->HasCollision(playerOnePaddle);
-	pongBall->HasCollision(playerTwoPaddle);
+	pongBall->OnCollision(playerOnePaddle);
+	pongBall->OnCollision(playerTwoPaddle);
 }
 /*
 * handleEvents - Controler Events for the controler.

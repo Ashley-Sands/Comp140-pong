@@ -25,7 +25,7 @@ void ball::Update()
 
 }
 
-bool ball::HasCollision(Transform * otherObject)
+bool ball::OnCollision(Transform * otherObject)
 {
 
 	// find what edge we have collion on if any
