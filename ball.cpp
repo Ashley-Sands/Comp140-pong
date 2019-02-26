@@ -52,20 +52,30 @@ bool ball::OnCollision(Transform * otherObject)
 
 	bool collision = false;
 
-	std::cout << "Collision left: " << coll_left << " ## " << otherObject->objName << "\n";
-	std::cout << "Collision right: " << coll_right << " ## " << otherObject->objName << "\n";
+
 
 	// top/bottom collision
 	if ((coll_top < 0 && coll_bot < 0) && (coll_left < 0 && coll_right < 0))
 	{
+		std::cout << "Collision top: " << coll_top << " ## " << otherObject->objName << "\n";
+		std::cout << "Collision bottom: " << coll_bot << " ## " << otherObject->objName << "\n";
+		moveDirection->y = -moveDirection->y;
 		collision = true;
 	}
 
-	// left/right collision
-	if ((coll_left < 0 && coll_right < 0) && (coll_top < 0 && coll_bot < 0))
+	// find if we are colliding on any edge.
+	if (coll_left < 0 && coll_right < 0 && coll_top < 0 && coll_bot < 0)
 	{
 		moveDirection->x = -moveDirection->x;
-		moveDirection->y = 0.25f;	// TODO: work out the angle from the center of the collision
+		
+		// work out the amount to move in on the y direction (from the center of the colliding object.
+		if (coll_top > coll_bot)
+			moveDirection->y = 0.25f - (((abs(coll_top) / (otherObject->GetSize().y / 2.0f))) * 0.25f);
+		else
+			moveDirection->y = -( 0.25f - ((abs(coll_bot) / (otherObject->GetSize().y / 2.0f))) * 0.25f);
+
+		std::cout << "md: " << moveDirection->y << "\n";
+
 		collision = true;
 	}
 
