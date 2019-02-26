@@ -13,11 +13,13 @@ public:
 
 	void Update();
 
+	virtual bool HasCollision(Transform* otherObject) override;
+
 private:
 	
 	Vector2* moveDirection;
 
-	int speed = 1;
+	int speed = 15;
 
 };
 
