@@ -52,5 +52,9 @@ private:
 	Vector2 position;			//set the position into a vector so we dont lose any position
 
 	Color* color;
+
+protected:
+	float const collisionSolver = 5.0f ;
+
 };
 

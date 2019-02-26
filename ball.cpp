@@ -64,16 +64,16 @@ bool ball::OnCollision(Transform * otherObject)
 	}
 
 	// find if we are colliding on any edge.
-	if (coll_left < 0 && coll_right < 0 && coll_top < 0 && coll_bot < 0)
+	if (coll_left < collisionSolver && coll_right < collisionSolver && coll_top < collisionSolver && coll_bot < collisionSolver)
 	{
 		// top / bottom collision
-		if (coll_top > -3 || coll_bot > -3)
+		if (coll_top > -collisionSolver || coll_bot > -collisionSolver)
 		{
 			moveDirection->y = -moveDirection->y;
 		}
 
 		// left / right collision
-		if (coll_left > -3 || coll_right > -3)
+		if (coll_left > -collisionSolver || coll_right > -collisionSolver)
 		{
 			moveDirection->x = -moveDirection->x;
 
