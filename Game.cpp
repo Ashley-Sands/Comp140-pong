@@ -17,6 +17,9 @@ Game::Game()
 	playerOnePaddle = new Transform("p_one");
 	playerTwoPaddle = new Transform("p_two");
 	pongBall = new ball("ball");
+
+	scoreText = new Text_Transform();
+
 }
 
 /*
@@ -111,6 +114,10 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, i
 	ResetBall();
 	pongBall->SetColor(255, 255, 0, 255);
 
+	scoreText->SetColor(255, 255, 255, 255);
+	scoreText->SetRect(Vector2((windowSize->x / 2) - 75, 5), Vector2(150, 50));
+	scoreText->SetText("::  0 - 0 ::");
+
 	return true;
 }
 
@@ -130,6 +137,8 @@ void Game::render()
 	playerOnePaddle->Render(mainRenderer);
 	playerTwoPaddle->Render(mainRenderer);
 	pongBall->Render(mainRenderer);
+
+	scoreText->Render(mainRenderer);
 
 	// render new frame
 	SDL_RenderPresent(mainRenderer);

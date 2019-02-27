@@ -4,6 +4,7 @@
 #include "SerialInterface.h"
 #include "Transform.h"
 #include "ball.h"
+#include "Text_Transform.h"
 
 class Game
 {
@@ -46,6 +47,8 @@ private:
 	Transform* playerOnePaddle;
 	Transform* playerTwoPaddle;
 	ball* pongBall;
+
+	Text_Transform* scoreText;
 
 	SerialInterface* serial;
 
