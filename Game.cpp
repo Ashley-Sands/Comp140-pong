@@ -3,6 +3,7 @@
 #include "SDL_ttf.h"
 #include <string>
 #include <iostream>
+#include <windows.h>
 
 using std::cout;
 
@@ -195,15 +196,15 @@ void Game::HandleKeyboardEvents(int deltaTime)
 			break;
 		case SDL_KEYDOWN:
 			//Player onw inputs.
-			if (event.key.keysym.sym == SDLK_w)
+			if (GetAsyncKeyState('W')) //(event.key.keysym.sym == SDLK_w)
 				playerOnePaddle->MoveTransform( 0, -paddleMoveSpeed , deltaTime);
-			else if (event.key.keysym.sym == SDLK_s)
+			else if (GetAsyncKeyState('S')) //event.key.keysym.sym == SDLK_s)
 				playerOnePaddle->MoveTransform( 0, paddleMoveSpeed, deltaTime);
 			
 			//Player two inputs.
-			if (event.key.keysym.sym == SDLK_UP)
+			if (GetAsyncKeyState(VK_UP) ) //event.key.keysym.sym == SDLK_UP)
 				playerTwoPaddle->MoveTransform(0, -paddleMoveSpeed, deltaTime);
-			else if (event.key.keysym.sym == SDLK_DOWN)
+			else if (GetAsyncKeyState(VK_DOWN) ) //(event.key.keysym.sym == SDLK_DOWN)
 				playerTwoPaddle->MoveTransform(0, paddleMoveSpeed, deltaTime);
 
 
@@ -267,7 +268,7 @@ void Game::BallIsInBounds()
 */
 float Game::ClampPaddlePosition(float yPosition, float min, float max)
 {
-	if (yPosition < 75) yPosition = 75;
+	if (yPosition < 50) yPosition = 50;
 	else if (yPosition > 405) yPosition = 405;
 
 	return yPosition;
