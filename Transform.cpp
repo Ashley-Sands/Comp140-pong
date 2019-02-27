@@ -40,6 +40,10 @@ Transform::~Transform()
 
 SDL_Rect Transform::GetRect()
 {
+	// check that the position is upto date with the vector2
+	positionRect.x = position.x;
+	positionRect.y = position.y;
+
 	return positionRect;
 }
 
