@@ -53,7 +53,7 @@ private:
 
 protected:
 	Color* color;
-	float const collisionSolver = 5.0f ;
+	float const collisionSolver = 6.0f ;
 
 };
 
