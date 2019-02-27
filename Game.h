@@ -21,7 +21,8 @@ public:
 	void handleEvents(int deltaTime);
 	
 	void ResetBall();
-	
+	void BallIsInBounds();
+
 	void clean();
 
 	bool initSerialConnection();

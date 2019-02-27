@@ -139,6 +139,9 @@ void Game::update(int deltaTime)
 	// paddle collision
 	pongBall->OnCollision(playerOnePaddle);
 	pongBall->OnCollision(playerTwoPaddle);
+
+	//Check if the ball is in X bounds!
+	BallIsInBounds();
 	
 }
 /*
@@ -220,6 +223,19 @@ void Game::ResetBall()
 	pongBall->SetRect(Vector2(((windowSize->x/2) - 10), ((windowSize->y / 2) - 10)), Vector2(20, 20));
 }
 
+void Game::BallIsInBounds()
+{
+
+	if (pongBall->GetPosition().x < -25)
+	{
+		ResetBall();
+	}
+	else if (pongBall->GetPosition().x > windowSize->x + 25)
+	{
+		ResetBall();
+	}
+
+}
 /*
 * 
 */
