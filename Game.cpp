@@ -82,10 +82,10 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, i
 	cout << "SDL init success \n";
 
 	// sound top and bottom bounds
-	topBounds->SetRect(Vector2(0, 0), Vector2(width, 10));
+	topBounds->SetRect(Vector2(0, -20), Vector2(width, 20));
 	topBounds->SetColor(100, 100, 100, 255);
 
-	bottomBounds->SetRect(Vector2(0, height-10), Vector2(width, 10));
+	bottomBounds->SetRect(Vector2(0, height), Vector2(width, 20));
 	bottomBounds->SetColor(100, 100, 100, 255);
 
 	//Set the player one and two start.
@@ -219,7 +219,7 @@ void Game::handleEvents()
 */
 float Game::ClampPaddlePosition(float yPosition, float min, float max)
 {
-	if (yPosition < 0) yPosition = 0;
+	if (yPosition < 75) yPosition = 75;
 	else if (yPosition > 405) yPosition = 405;
 
 	return yPosition;
