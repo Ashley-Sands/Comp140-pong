@@ -1,5 +1,5 @@
 #include "Text_Transform.h"
-//#include "SDL_ttf.h"
+#include "SDL_ttf.h"
 
 
 Text_Transform::Text_Transform() : Transform::Transform()
@@ -22,8 +22,8 @@ void Text_Transform::SetText(std::string text)
 }
 
 void Text_Transform::Render(SDL_Renderer* renderer)
-{/*
-	TTF_Init();
+{
+	
 	TTF_Font* font = TTF_OpenFont("Sans.ttf", 24);
 	SDL_Color col = { color->red, color->green, color->blue };
 
@@ -34,5 +34,5 @@ void Text_Transform::Render(SDL_Renderer* renderer)
 
 	SDL_FreeSurface(surfaceMessage);
 	SDL_DestroyTexture(message);
-	*/
+	
 }
