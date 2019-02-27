@@ -73,6 +73,7 @@ bool ball::OnCollision(Transform * otherObject)
 		if (coll_left > -collisionSolver || coll_right > -collisionSolver)
 		{
 			moveDirection->x = -moveDirection->x;
+			
 
 			// work out the amount to move in on the y direction (from the center of the colliding object.
 			if (coll_top > coll_bot)
