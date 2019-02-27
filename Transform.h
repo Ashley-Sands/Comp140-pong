@@ -29,8 +29,8 @@ public:
 	void SetPositionX( float x_pos );
 	void SetPositionY( float y_pos );
 
-	void MoveTransform( float move_x, float move_y, int deltaTime = 1);
-	void MoveTransform(Vector2 moveAmount, int deltaTime = 1);
+	void MoveTransform( float move_x, float move_y, int deltaTime = 1000);
+	void MoveTransform(Vector2 moveAmount, int deltaTime = 1000);
 
 	Vector2 GetSize();
 	void SetSize(Vector2 newSize);
