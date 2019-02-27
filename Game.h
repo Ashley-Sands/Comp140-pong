@@ -32,7 +32,7 @@ private:
 	//SDL_Rect playerOnePosition;
 	//SDL_Rect playerTwoPosition;
 
-	float paddleMoveSpeed = 5.0f;
+	float paddleMoveSpeed = 75.0f;
 
 	Transform* topBounds;
 	Transform* bottomBounds;
