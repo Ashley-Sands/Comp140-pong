@@ -56,5 +56,8 @@ private:
 
 	bool ignoreSerial = true;
 
+	int playerOneScore = 0;
+	int playerTwoScore = 0;
+
 };
 

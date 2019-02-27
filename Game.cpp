@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
 #include "SDL_ttf.h"
+#include <string>
 #include <iostream>
 
 using std::cout;
@@ -249,11 +250,16 @@ void Game::BallIsInBounds()
 	if (pongBall->GetPosition().x < -25)
 	{
 		ResetBall();
+		playerTwoScore++;
 	}
 	else if (pongBall->GetPosition().x > windowSize->x + 25)
 	{
 		ResetBall();
+		playerOneScore++;
+
 	}
+
+	scoreText->SetText("::  "+ std::to_string(playerOneScore) +" - "+ std::to_string( playerTwoScore ) +" ::");
 
 }
 /*
