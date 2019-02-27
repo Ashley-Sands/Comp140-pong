@@ -70,6 +70,14 @@ bool ball::OnCollision(Transform * otherObject)
 		if (coll_top > -collisionSolver || coll_bot > -collisionSolver)
 		{
 			moveDirection->y = -moveDirection->y;
+
+			// correct y position.
+			if (coll_top > -collisionSolver)
+				MoveTransform(0, (collisionSolver - coll_top) + 0.25f);
+			else
+				MoveTransform(0, -((collisionSolver - coll_bot) + 0.25f) );
+
+
 		}
 
 		// left / right collision
@@ -82,6 +90,12 @@ bool ball::OnCollision(Transform * otherObject)
 				moveDirection->y = 0.4f - (((abs(coll_top) / (otherObject->GetSize().y / 2.0f))) * 0.4f);
 			else
 				moveDirection->y = -(0.4f - ((abs(coll_bot) / (otherObject->GetSize().y / 2.0f))) * 0.4f);
+
+			// correct X position.
+			if (coll_left > -collisionSolver)
+				MoveTransform((collisionSolver - coll_left) + 0.25f, 0);
+			else
+				MoveTransform(-((collisionSolver - coll_right) + 0.25f), 0);
 
 			std::cout << "md: " << moveDirection->y << "\n";
 		}
