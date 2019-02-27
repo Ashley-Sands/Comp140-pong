@@ -51,9 +51,8 @@ private:
 	SDL_Rect positionRect;
 	Vector2 position;			//set the position into a vector so we dont lose any position
 
-	Color* color;
-
 protected:
+	Color* color;
 	float const collisionSolver = 5.0f ;
 
 };
