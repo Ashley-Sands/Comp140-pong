@@ -77,9 +77,9 @@ bool ball::OnCollision(Transform * otherObject)
 
 			// work out the amount to move in on the y direction (from the center of the colliding object.
 			if (coll_top > coll_bot)
-				moveDirection->y = 0.4f - (((abs(coll_top) / (otherObject->GetSize().y / 2.0f))) * 0.4f);
+				moveDirection->y = 0.6f - (((abs(coll_top) / (otherObject->GetSize().y / 2.0f))) * 0.6f);
 			else
-				moveDirection->y = -(0.4f - ((abs(coll_bot) / (otherObject->GetSize().y / 2.0f))) * 0.4f);
+				moveDirection->y = -(0.6f - ((abs(coll_bot) / (otherObject->GetSize().y / 2.0f))) * 0.6f);
 
 			// correct X position.
 			if (coll_left > -collisionSolver)
