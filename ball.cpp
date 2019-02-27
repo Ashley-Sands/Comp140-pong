@@ -52,17 +52,6 @@ bool ball::OnCollision(Transform * otherObject)
 
 	bool collision = false;
 
-
-
-	// top/bottom collision (OLD)
-	if ((coll_top < 0 && coll_bot < 0) && (coll_left < 0 && coll_right < 0))
-	{
-		std::cout << "Collision top: " << coll_top << " ## " << otherObject->objName << "\n";
-		std::cout << "Collision bottom: " << coll_bot << " ## " << otherObject->objName << "\n";
-		moveDirection->y = -moveDirection->y;
-		collision = true;
-	}
-
 	// find if we are colliding on any edge.
 	if (coll_left < collisionSolver && coll_right < collisionSolver && coll_top < collisionSolver && coll_bot < collisionSolver)
 	{
