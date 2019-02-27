@@ -72,8 +72,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>libraries\SDL2-2.0.7\include;libraries\serial\include;$(IncludePath)</IncludePath>
-    <LibraryPath>libraries\SDL2-2.0.7\lib\x86;libraries\serial\visual_studio\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>libraries\SDL_ttf-2.0.15\include;libraries\SDL2-2.0.7\include;libraries\serial\include;$(IncludePath)</IncludePath>
+    <LibraryPath>libraries\SDL_ttf-2.0.15\lib;libraries\SDL2-2.0.7\lib\x86;libraries\serial\visual_studio\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -98,7 +98,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;serial.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;serial.lib;SDL_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -159,10 +159,10 @@
     <ClInclude Include="ball.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Paddle.h" />
     <ClInclude Include="SerialInterface.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Text_Transform.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Vector2.h" />
   </ItemGroup>
@@ -171,7 +171,6 @@
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="SerialInterface.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -179,6 +178,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Text_Transform.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
