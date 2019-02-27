@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Game.h"
+#include "SDL_ttf.h"
 #include <iostream>
 
 using std::cout;
@@ -23,8 +24,9 @@ Game::Game()
 */
 Game::~Game()
 {
-	delete playerOnePaddle;
-	delete playerTwoPaddle;
+	delete playerOnePaddle, playerTwoPaddle;
+	delete topBounds, bottomBounds;
+	delete pongBall;
 }
 
 bool Game::initSerialConnection()
@@ -40,35 +42,44 @@ bool Game::initSerialConnection()
 */
 bool Game::init(const char * title, int xpos, int ypos, int width, int height, int flags)
 {
+	
 	// initialise SDL
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
 		cout << "SDL init success \n";
 
-		// Create a window
-		mainWindow = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
+		if (TTF_Init() == 0)
+		{
+			cout << "SDL ttf init success \n";
+			// Create a window
+			mainWindow = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
 
-		// if window succesful..
-		if (mainWindow != 0) {
-			cout << "Window creation success \n";
+			// if window succesful..
+			if (mainWindow != 0) {
+				cout << "Window creation success \n";
 
-			// create renderer
-			mainRenderer = SDL_CreateRenderer(mainWindow, -1, 0);
+				// create renderer
+				mainRenderer = SDL_CreateRenderer(mainWindow, -1, 0);
 
-			// if renderer successful...
-			if (mainRenderer != 0) {
-				cout << "Renderer creation success \n";
-				SDL_SetRenderDrawColor(mainRenderer, 255, 255, 255, 255);
+				// if renderer successful...
+				if (mainRenderer != 0) {
+					cout << "Renderer creation success \n";
+					SDL_SetRenderDrawColor(mainRenderer, 255, 255, 255, 255);
+				}
+				else {
+					cout << "renderer failed \n";
+					return false;
+				}
 			}
 			else {
-				cout << "renderer failed \n";
+				cout << "window failed \n";
 				return false;
 			}
 		}
-		else {
-			cout << "window failed \n";
+		else
+		{
+			cout << "SDL ttf fail \n";
 			return false;
 		}
-
 	}
 	else {
 		cout << "SDL fail \n";
