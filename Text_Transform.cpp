@@ -24,7 +24,7 @@ void Text_Transform::SetText(std::string text)
 void Text_Transform::Render(SDL_Renderer* renderer)
 {
 	
-	TTF_Font* font = TTF_OpenFont("Sans.ttf", 24);
+	TTF_Font* font = TTF_OpenFont("BRLNSR.ttf", 24);
 	SDL_Color col = { color->red, color->green, color->blue };
 
 	SDL_Surface* surfaceMessage = TTF_RenderText_Solid(font, textToDisplay.c_str(), col);
