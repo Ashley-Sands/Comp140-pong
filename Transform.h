@@ -3,7 +3,7 @@
 #include "Vector2.h"
 #include "color.h"
 #include <string>
-#include "libraries/SDL2-2.0.7/include/SDL.h"
+#include "SDL.h"
 
 class SDL_Rect;
 class SDL_Renderer;
