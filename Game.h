@@ -17,8 +17,8 @@ public:
 	// @Param int deltaTime:	Amount of ticks since the last up date.
 	void update(int deltaTime);
 	void HandleControlerEvents();
-	void HandleKeyboardEvents();
-	void handleEvents();
+	void HandleKeyboardEvents(int deltaTime);
+	void handleEvents(int deltaTime);
 	void clean();
 
 	bool initSerialConnection();

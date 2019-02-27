@@ -157,7 +157,7 @@ void Game::HandleControlerEvents()
 
 }
 
-void Game::HandleKeyboardEvents()
+void Game::HandleKeyboardEvents(int deltaTime)
 {
 	SDL_Event event;
 
@@ -171,15 +171,15 @@ void Game::HandleKeyboardEvents()
 		case SDL_KEYDOWN:
 			//Player onw inputs.
 			if (event.key.keysym.sym == SDLK_w)
-				playerOnePaddle->MoveTransform( 0, -paddleMoveSpeed );
+				playerOnePaddle->MoveTransform( 0, -paddleMoveSpeed , deltaTime);
 			else if (event.key.keysym.sym == SDLK_s)
-				playerOnePaddle->MoveTransform( 0, paddleMoveSpeed );
+				playerOnePaddle->MoveTransform( 0, paddleMoveSpeed, deltaTime);
 			
 			//Player two inputs.
 			if (event.key.keysym.sym == SDLK_UP)
-				playerTwoPaddle->MoveTransform(0, -paddleMoveSpeed);
+				playerTwoPaddle->MoveTransform(0, -paddleMoveSpeed, deltaTime);
 			else if (event.key.keysym.sym == SDLK_DOWN)
-				playerTwoPaddle->MoveTransform(0, paddleMoveSpeed);
+				playerTwoPaddle->MoveTransform(0, paddleMoveSpeed, deltaTime);
 
 
 			//Spwan Ball if on is not present.
@@ -197,13 +197,13 @@ void Game::HandleKeyboardEvents()
 /*
 * handleEvents - Poll Events and uses switch case to process specific events
 */
-void Game::handleEvents()
+void Game::handleEvents(int deltaTime)
 {
 	// use controler inputs if avable.
 	if (serial->connect && !ignoreSerial)
 		HandleControlerEvents();
 	else
-		HandleKeyboardEvents();
+		HandleKeyboardEvents(deltaTime);
 
 	// Clamp the paddle position.
 	float p1_clampedY = ClampPaddlePosition(playerOnePaddle->GetPosition().y, 0, 405);
