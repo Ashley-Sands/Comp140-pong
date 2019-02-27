@@ -19,6 +19,9 @@ public:
 	void HandleControlerEvents();
 	void HandleKeyboardEvents(int deltaTime);
 	void handleEvents(int deltaTime);
+	
+	void ResetBall();
+	
 	void clean();
 
 	bool initSerialConnection();
@@ -28,6 +31,8 @@ private:
 	SDL_Window* mainWindow;
 	SDL_Renderer* mainRenderer;
 	bool isRunning;
+
+	Vector2* windowSize;
 
 	//SDL_Rect playerOnePosition;
 	//SDL_Rect playerTwoPosition;

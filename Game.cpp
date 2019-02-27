@@ -81,6 +81,8 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, i
 	initSerialConnection();
 	cout << "SDL init success \n";
 
+	windowSize = new Vector2(width, height);
+
 	// sound top and bottom bounds
 	topBounds->SetRect(Vector2(0, -20), Vector2(width, 20));
 	topBounds->SetColor(100, 100, 100, 255);
@@ -92,12 +94,11 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, i
 	playerOnePaddle->SetRect(Vector2(50, 100), Vector2(25, 75));
 	playerOnePaddle->SetColor(255, 255, 255, 255);
 
-	playerTwoPaddle->SetRect(Vector2(540, 100), Vector2(25, 75));
+	playerTwoPaddle->SetRect(Vector2(780, 100), Vector2(25, 75));
 	playerTwoPaddle->SetColor(255, 255, 255, 255);
 
-	pongBall->SetRect( Vector2(250, 150), Vector2(20, 20) );
+	ResetBall();
 	pongBall->SetColor(255, 255, 0, 255);
-
 
 	return true;
 }
@@ -212,6 +213,11 @@ void Game::handleEvents(int deltaTime)
 	playerOnePaddle->SetPositionY(p1_clampedY);
 	playerTwoPaddle->SetPositionY(p2_clampedY);
 
+}
+
+void Game::ResetBall()
+{
+	pongBall->SetRect(Vector2(((windowSize->x/2) - 10), ((windowSize->y / 2) - 10)), Vector2(20, 20));
 }
 
 /*

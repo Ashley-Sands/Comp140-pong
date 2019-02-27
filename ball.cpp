@@ -26,7 +26,7 @@ ball::~ball()
 void ball::Update(int deltaTime)
 {
 
-	MoveTransform((*moveDirection * speed) * (deltaTime/1000.0f) );
+	MoveTransform((*moveDirection * speed) * (deltaTime / 1000.0f) );
 
 }
 
