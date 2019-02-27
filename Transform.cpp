@@ -70,14 +70,14 @@ void Transform::SetPositionY(float y_pos)
 	position.y = y_pos;
 }
 
-void Transform::MoveTransform(float move_x, float move_y)
+void Transform::MoveTransform(float move_x, float move_y, int deltaTime)
 {
-	MoveTransform( Vector2(move_x, move_y) );
+	MoveTransform( Vector2(move_x, move_y), deltaTime );
 }
 
-void Transform::MoveTransform(Vector2 moveAmount)
+void Transform::MoveTransform(Vector2 moveAmount, int deltaTime)
 {
-	SetPosition( GetPosition() + moveAmount );
+	SetPosition( GetPosition() + (moveAmount * (deltaTime/1000.0f) ) );
 }
 
 Vector2 Transform::GetSize()
