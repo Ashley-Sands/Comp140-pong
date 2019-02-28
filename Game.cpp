@@ -127,6 +127,10 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, i
 	scoreText->SetRect(Vector2((windowSize->x / 2) - 75, 5), Vector2(150, 50));
 	scoreText->SetText("::  0 - 0 ::");
 
+	gameOverText->SetColor(255, 255, 255, 255);
+	gameOverText->SetRect(Vector2((windowSize->x / 2) - 150, (windowSize->y / 2) - 150), Vector2(300, 300));
+	gameOverText->SetText("Game Over!");
+
 	return true;
 }
 
@@ -138,16 +142,23 @@ void Game::render()
 	// clear previous frame
 	SDL_RenderClear(mainRenderer);
 
-	// draw bounds
-	topBounds->Render(mainRenderer);
-	bottomBounds->Render(mainRenderer);
+	if (!gameOver)
+	{
+		// draw bounds
+		topBounds->Render(mainRenderer);
+		bottomBounds->Render(mainRenderer);
 
-	// draw player one and two to screen
-	playerOnePaddle->Render(mainRenderer);
-	playerTwoPaddle->Render(mainRenderer);
-	pongBall->Render(mainRenderer);
+		// draw player one and two to screen
+		playerOnePaddle->Render(mainRenderer);
+		playerTwoPaddle->Render(mainRenderer);
+		pongBall->Render(mainRenderer);
 
-	scoreText->Render(mainRenderer);
+		scoreText->Render(mainRenderer);
+	}
+	else
+	{
+		gameOverText->Render(mainRenderer);
+	}
 
 	// render new frame
 	SDL_RenderPresent(mainRenderer);
