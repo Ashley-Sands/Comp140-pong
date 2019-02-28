@@ -1,5 +1,7 @@
 #pragma once
 #include "Transform.h"
+#include "SDL_ttf.h"
+
 class Text_Transform : public Transform
 {
 public:
@@ -15,5 +17,8 @@ public:
 
 private:
 	std::string textToDisplay;
+	SDL_Surface* surfaceMessage;
+	SDL_Texture* message;
+	TTF_Font* font;
 };
 
