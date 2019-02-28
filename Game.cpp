@@ -45,6 +45,7 @@ bool Game::initSerialConnection()
 
 	return true;
 }
+
 /*
 * init - used to initialise and setup SDL
 * Return true if everything is successful
@@ -100,6 +101,8 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, i
 
 	initSerialConnection();
 	cout << "SDL init success \n";
+
+	serial->send("N");		// reset the controller
 
 	windowSize = new Vector2(width, height);
 
