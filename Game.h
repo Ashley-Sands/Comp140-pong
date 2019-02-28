@@ -29,6 +29,8 @@ public:
 	bool initSerialConnection();
 	bool running() { return isRunning; };
 
+	void CheckForWiner();
+
 	void ResetGame();
 
 private:

@@ -185,6 +185,7 @@ void Game::update(int deltaTime)
 
 	//Check if the ball is in X bounds!
 	BallIsInBounds();
+	CheckForWiner();
 	
 }
 /*
@@ -286,9 +287,6 @@ void Game::BallIsInBounds()
 
 	scoreText->SetText("::  "+ std::to_string(playerOneScore) +" - "+ std::to_string( playerTwoScore ) +" ::");
 
-	if (playerOneScore == 3 || playerTwoScore == 3)
-		gameOver = true;
-
 }
 /*
 * 
@@ -299,6 +297,16 @@ float Game::ClampPaddlePosition(float yPosition, float min, float max)
 	else if (yPosition > 405) yPosition = 405;
 
 	return yPosition;
+}
+
+void Game::CheckForWiner()
+{
+	if (playerOneScore == 3 || playerTwoScore == 3)
+	{
+		gameOver = true;
+		std::string winner = (playerOneScore == 3 ? "One" : "Two");
+		gameOverText->SetText("Game Over!\nPlayer "+ winner + "Wins!");
+	}
 }
 
 //Reset the game and controller
