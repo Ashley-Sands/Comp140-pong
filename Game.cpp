@@ -106,6 +106,8 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, i
 
 	serial->send("N");		// reset the controller
 
+	handleEvents(0);		// update the paddle position
+
 	windowSize = new Vector2(width, height);
 
 	// sound top and bottom bounds
