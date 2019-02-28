@@ -61,7 +61,7 @@ private:
 	float ClampPaddlePosition(float yPosition, float min, float max);
 
 	bool ignoreSerial = false;
-	int forceComPort = 3;		// set to -1 to use the first port found.
+	int forceComPort = -1;		// set to -1 to use the first port found.
 
 	int playerOneScore = 0;
 	int playerTwoScore = 0;
