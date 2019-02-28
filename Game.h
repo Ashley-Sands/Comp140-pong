@@ -54,6 +54,7 @@ private:
 
 	Text_Transform* scoreText;
 	Text_Transform* gameOverText;
+	Text_Transform* winnerText;
 
 	SerialInterface* serial;
 

@@ -21,6 +21,8 @@ Game::Game()
 	pongBall = new ball("ball");
 
 	scoreText = new Text_Transform();
+	gameOverText = new Text_Transform();
+	winnerText = new Text_Transform();
 
 }
 
@@ -128,8 +130,12 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, i
 	scoreText->SetText("::  0 - 0 ::");
 
 	gameOverText->SetColor(255, 255, 255, 255);
-	gameOverText->SetRect(Vector2((windowSize->x / 2) - 150, (windowSize->y / 2) - 150), Vector2(300, 300));
+	gameOverText->SetRect(Vector2((windowSize->x / 2) - 150, (windowSize->y / 2) - 100), Vector2(300, 100));
 	gameOverText->SetText("Game Over!");
+
+	winnerText->SetColor(255, 255, 255, 255);
+	winnerText->SetRect(Vector2((windowSize->x / 2) - 150, (windowSize->y / 2)), Vector2(300, 100));
+	winnerText->SetText("Player wins");
 
 	return true;
 }
@@ -158,6 +164,7 @@ void Game::render()
 	else
 	{
 		gameOverText->Render(mainRenderer);
+		winnerText->Render(mainRenderer);
 	}
 
 	// render new frame
@@ -305,7 +312,7 @@ void Game::CheckForWiner()
 	{
 		gameOver = true;
 		std::string winner = (playerOneScore == 3 ? "One" : "Two");
-		gameOverText->SetText("Game Over!\nPlayer "+ winner + "Wins!");
+		winnerText->SetText("Player "+ winner + " Wins!");
 	}
 }
 
