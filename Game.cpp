@@ -289,6 +289,16 @@ float Game::ClampPaddlePosition(float yPosition, float min, float max)
 
 	return yPosition;
 }
+
+//Reset the game and controller
+void Game::ResetGame()
+{
+
+	playerOneScore = playerTwoScore = 0;
+	ResetBall();
+	serial->send("N");
+}
+
 /*
 * clean - Clean up SDL and close the port
 */

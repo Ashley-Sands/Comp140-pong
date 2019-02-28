@@ -29,6 +29,8 @@ public:
 	bool initSerialConnection();
 	bool running() { return isRunning; };
 
+	void ResetGame();
+
 private:
 	SDL_Window* mainWindow;
 	SDL_Renderer* mainRenderer;
