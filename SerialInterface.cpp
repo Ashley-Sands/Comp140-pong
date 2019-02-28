@@ -13,24 +13,41 @@ SerialInterface::SerialInterface()
 		serial::PortInfo device = *iter++;
 		std::string port = device.port.c_str();
 
-		try {
-			mySerial = new serial::Serial( port, 9600, serial::Timeout::simpleTimeout( 250 ) );
-
-			if (mySerial->isOpen())
-			{
-				std::cout << "Connection success: " << port << "\n";
-				connect = true;
-
-				break;
-			}
-		}
-		catch (std::exception &e) {
-
-		}
+		if (TryConnection(port))
+			break;
+		
 	}
 }
-SerialInterface::~SerialInterface()
+
+
+
+SerialInterface::SerialInterface(int port)
 {
+	std::string comPort = "COM" + std::to_string(port);
+	TryConnection(comPort);
+}
+
+
+SerialInterface::~SerialInterface()
+{}
+bool SerialInterface::TryConnection(std::string port)
+{
+	try {
+		mySerial = new serial::Serial(port, 9600, serial::Timeout::simpleTimeout(25));
+
+		if (mySerial->isOpen())
+		{
+			std::cout << "Connection success: " << port << "\n";
+			connect = true;
+			return true;
+		}
+	}
+	catch (std::exception &e) {
+
+	}
+
+	std::cout << "Failed to connecnt to " << port << "\n";
+	return false;
 
 }
 
@@ -68,6 +85,9 @@ void SerialInterface::getPositions()
 		mySerial->write( "P" );
 
 		std::string result = mySerial->readline();
+
+		std::cout << result << std::endl;
+
 
 		if (result.length() > 5) {
 			std::string sub1 = result.substr( 0, 4 );
