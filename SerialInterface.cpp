@@ -67,14 +67,12 @@ void SerialInterface::getButton()
 
 		std::string result = mySerial->readline();
 
-		//std::vector<std::string> pos = split(result, ';');
-
 		std::string b1 = result.substr( 0, 1 );
 		std::string b2 = result.substr( 2, 1 );
 
 		button1 = std::stoi( b1 );
 		button2 = std::stoi( b2 );
-		//std::cout << button1 << std::endl;
+		
 	}
 }
 
@@ -86,7 +84,7 @@ void SerialInterface::getPositions()
 
 		std::string result = mySerial->readline();
 
-		std::cout << result << std::endl;
+		//std::cout << result << std::endl;
 
 
 		if (result.length() > 5) {
