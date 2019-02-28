@@ -37,7 +37,11 @@ Game::~Game()
 bool Game::initSerialConnection()
 {
 
-	serial = new SerialInterface();
+	if (forceComPort < 0)
+		serial = new SerialInterface();
+	else
+		serial = new SerialInterface(forceComPort);
+
 
 	return true;
 }
@@ -176,10 +180,10 @@ void Game::HandleControlerEvents()
 
 	// Get and set player one and two positions
 	float playerOnePos = (serial->getPot1() / 1023.0f) * 405.0f;
-	float playerTwoPos = (serial->getPot1() / 1023.0f) * 405.0f;
+	float playerTwoPos = (serial->getPot2() / 1023.0f) * 405.0f;
 
-	playerOnePaddle->SetPosition( Vector2(0, playerOnePos ) );
-	playerOnePaddle->SetPosition( Vector2(0, playerTwoPos ) );
+	playerOnePaddle->SetPosition( Vector2(50, playerOnePos ) );
+	playerTwoPaddle->SetPosition( Vector2(780, playerTwoPos ) );
 
 }
 
