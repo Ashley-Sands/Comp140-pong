@@ -162,9 +162,12 @@ void Game::update(int deltaTime)
 	pongBall->OnCollision(topBounds);
 	pongBall->OnCollision(bottomBounds);
 
-	// paddle collision
-	pongBall->OnCollision(playerOnePaddle);
-	pongBall->OnCollision(playerTwoPaddle);
+	// paddle collision and send message to flash hit LED
+	if (pongBall->OnCollision(playerOnePaddle))
+		serial->send("H");
+
+	if (pongBall->OnCollision(playerTwoPaddle))
+		serial->send("J");
 
 	//Check if the ball is in X bounds!
 	BallIsInBounds();
