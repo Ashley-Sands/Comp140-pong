@@ -259,11 +259,14 @@ void Game::BallIsInBounds()
 	{
 		ResetBall();
 		playerTwoScore++;
+		serial->send("L");
+
 	}
 	else if (pongBall->GetPosition().x > windowSize->x + 25)
 	{
 		ResetBall();
 		playerOneScore++;
+		serial->send("R");
 
 	}
 
