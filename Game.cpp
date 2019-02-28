@@ -275,6 +275,9 @@ void Game::BallIsInBounds()
 
 	scoreText->SetText("::  "+ std::to_string(playerOneScore) +" - "+ std::to_string( playerTwoScore ) +" ::");
 
+	if (playerOneScore == 3 || playerTwoScore == 3)
+		gameOver = true;
+
 }
 /*
 * 

@@ -60,5 +60,7 @@ private:
 	int playerOneScore = 0;
 	int playerTwoScore = 0;
 
+	bool gameOver = false;
+
 };
 
